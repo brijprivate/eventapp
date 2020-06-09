@@ -1,0 +1,7 @@
+{
+    "name": "CDays",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "angular"
+}

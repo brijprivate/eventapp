@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Forgot-OTP</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-work">
+    <form [formGroup]="ForgotPassowrdForm" class="example-form">
+        <mat-form-field class="example-full-width" style="color: #222">
+            <mat-icon matPrefix style="color:#222;margin-top: 5px">email</mat-icon>
+            <input matInput formControlName="userEmail" style="color:#222" type="email" placeholder="Email ID">
+            <mat-error *ngIf="ForgotPassowrdForm.controls['userEmail'].errors?.required">This field is mandatory.</mat-error>
+            <!-- <mat-error *ngIf="ForgotPassowrdForm.controls['email'].errors?.email"> Please enter a valid email address.</mat-error> -->
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="New password" formControlName="newPassword">
+            <mat-error *ngIf="ForgotPassowrdForm.controls['newPassword'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword">
+            <mat-error *ngIf="ForgotPassowrdForm.controls['confirmPassword'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="ForgotPassowrdForm.controls['confirmPassword'].errors?.mustMatch">Passwords must match.</mat-error>
+        </mat-form-field>
+        <ion-button type="submit" expand="full" (click)="ChangePasswordClicked()" color="primary">Save</ion-button>
+    </form>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header translucent>
+    <ion-toolbar translucent>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+        </ion-buttons>
+        <ion-title>Create Template</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding class="background-work">
+    <form #f="ngForm" [formGroup]="templateForm" (ngSubmit)="SaveAndCloseClicked()" class="example-form ">
+        <mat-form-field class="example-full-width" style="color: white">
+            <mat-icon matPrefix style="color:#222;margin-top: 5px">event_note</mat-icon>
+            <input matInput style="color:#222;" [(ngModel)]="tempTemplteObj.Description" type="text" placeholder="Template Name" formControlName="Description">
+            <mat-error *ngIf="templateForm.controls['Description'].errors?.required">This field is mandatory.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <textarea style="height: 50%;min-height: 200px" [(ngModel)]=tempTemplteObj.TextTemplate formControlName="TextTemplate" matInput placeholder="Template Text">
+                </textarea>
+            <mat-error *ngIf="templateForm.controls['TextTemplate'].errors?.required">This field is mandatory.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- <ion-card>
+    <ion-card-content>
+      It's that time in the year when we say happy birthday to (name of the celebrator). Come join us for his/her birthday.
+      
+      Please join us in celebrating
+      our Father's 50th Birthday
+      with a dinner party
+      at [Venue] on Saturday, 23rd August
+      at seven o'clock in the evening.
+      Hosted by his daughters
+     </ion-card-content>
+
+  </ion-card> -->
+        <!-- <mat-chip-list class="example-full-width">
+            <mat-chip color="primary" (click)="AddTag('Name')">firstname</mat-chip>
+            <mat-chip color="secondary" (click)="AddTag('eventname')">eventname</mat-chip>
+            <mat-chip color="tertiary" (click)="AddTag('Veune')">eventlocation</mat-chip>
+            <mat-chip color="success" (click)="AddTag('Event')">eventlocation</mat-chip>
+            <mat-chip color="warning" (click)="AddTag('Time')">eventtime</mat-chip>
+            <mat-chip color="light">Ext.</mat-chip>
+        </mat-chip-list> -->
+
+        <ion-button type="submit" expand="full" color="primary">Save & Back</ion-button>
+    </form>
+</ion-content>
+<!-- <ion-footer>
+    <ion-toolbar>
+        <ion-row>
+            <ion-col>
+                <ion-button  type="submit" expand="full" color="primary">Save & Back</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer> -->

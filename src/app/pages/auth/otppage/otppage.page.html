@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>OTP Verfication</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-work">
+    <!-- <ion-item> -->
+    <!-- <ion-label position="floating">Mobile Number</ion-label> -->
+    <!-- <ion-input ngModel type="text" id="otpNumber" [(ngModel)]="mobileNumber" class="form-control" pattern="[0-9]{6}"> -->
+       
+    <form class="example-form" >
+
+        <div *ngIf="!showSelected">
+
+      
+    <mat-form-field class="example-full-width">
+        <input matInput id="otpNumber" class="form-control"   style="color:#222"  pattern="[0-9]*" maxlength="10" (keypress)="numbersOnly($event)" [formControl]="mobileNumberControl" placeholder="Mobile Number" [(ngModel)]="mobileNumber" pattern="[0-9]{6}">
+        <mat-error *ngIf="mobileNumberControl.hasError('required')">
+            Mobile number is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <!-- </ion-input> -->
+    <!-- </ion-item> -->
+    
+    <ion-button expand="full" color="primary" (click)="SendOTP()" [disabled]="!isenabled">Send OTP</ion-button>
+</div>
+    <!-- <p>{{timeLeft}} Seconds Left....</p>  -->
+    <!-- <ion-item> -->
+    <!-- <ion-label position="floating">OTP</ion-label>
+        <ion-input [(ngModel)]="otpEnteredByUser" type="text" id="otpNumber" class="form-control" pattern="[0-9]{6}">
+        </ion-input> -->
+
+    <div *ngIf="showSelected">    
+    <!-- <mat-form-field class="example-full-width"> -->
+
+        <div class="divOuter">
+            <div class="divInner">
+              <input matInput id="otpNumber"  [ngModelOptions]="{standalone: true}" [(ngModel)]="otpEnteredByUser" type="text" id="otpNumber" type="text" maxlength="4" class="form-control partitioned">
+
+            </div>
+        </div>
+
+
+    <!-- </mat-form-field> -->
+    <!-- </ion-item> -->
+    <ion-button expand="full" color="primary" (click)="CheckOTP()">Submit OTP</ion-button>
+    <a (click)="reSendOTP()" class="resend">Resend OTP</a>
+    <!-- <ion-button text-center [disabled]="isenabled" (click)="SendOTP()">Resend OTP</ion-button> -->
+
+    </div>
+</form>
+</ion-content>

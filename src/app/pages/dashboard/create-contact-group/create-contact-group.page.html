@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar translucent>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+        </ion-buttons>
+        <ion-title>Create-Contact-Group</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-work">
+    <mat-form-field class="example-full-width" style="color: white">
+        <mat-icon matPrefix style="color:white;margin-top: 5px">event_note</mat-icon>
+        <input matInput style="color:white" [(ngModel)]="tempContactObj.GroupName" type="text" placeholder="Group Name" name="GroupName">
+    </mat-form-field>
+    <ion-list>
+        <ion-list-header>
+            Contacts
+        </ion-list-header>
+        <ion-item-sliding *ngFor="let contactItem of tempContactObj.ContactList;let i = index">
+            <ion-item (click)="editContact(contactItem)">
+                <ion-avatar slot="start">
+                    <img src="https://cdn0.iconfinder.com/data/icons/design-and-development-3-3/48/137-512.png">
+                </ion-avatar>
+                <ion-label>
+                    <h2>{{contactItem.Name}}</h2>
+                    <h3>{{contactItem.Number}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item-options color="tertiary" expandable>
+                <ion-item-option color="danger" (click)="deleteContact(i)">
+                    <ion-icon slot="start" name="trash"></ion-icon>
+                    Trash
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="ImportContact()">
+            <ion-icon name="filing"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="SaveGroup()" type="submit" expand="full" color="primary">Save Group Name</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

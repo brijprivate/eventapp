@@ -1,0 +1,84 @@
+<!-- <ion-header> -->
+<!-- <ion-toolbar>
+    <ion-title>
+      Tab Two
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+    <ion-row>
+        <ion-col>
+            <ion-row>
+                <ion-col>
+                    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" placeholder="Search here..">
+                    </ion-searchbar>
+                    <!-- <ion-icon class="btn-lg" name="ios-refresh-circle"></ion-icon> -->
+                </ion-col>
+                <!-- <ion-col width-20>
+                    <ion-icon class="btn-lg" name="ios-refresh-circle"></ion-icon>
+                </ion-col> -->
+            </ion-row>
+            <ion-item>
+                <ion-label>Select Searchtype</ion-label>
+                <ion-select (ionChange)="searchChanged($event)">
+                    <!--[(ngModel)]="type"-->
+                    <ion-select-option value="">All</ion-select-option>
+                    <ion-select-option value="movie">Name</ion-select-option>
+                    <ion-select-option value="series">Text</ion-select-option>
+                    <ion-select-option value="episode">Date</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-list>
+                <ion-list-header>
+                    Recent Contact Groups
+                </ion-list-header>
+                <ion-item-sliding *ngFor="let UserContactItem of UserContactsList;let i = index">
+                    <ion-item>
+                        <!--(click)="ShowContactList(UserContactItem)"-->
+                        <ion-avatar>
+                            <img src="https://cdn3.iconfinder.com/data/icons/rcons-e-mail-client/32/group_contact_mail-512.png">
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{UserContactItem.GroupName}}({{UserContactItem.ContactList.length}})</h2>
+                        </ion-label>
+
+                        <ion-icon name="create" color="primary" slot="end" (click)="ShowContactList(UserContactItem)">
+                        </ion-icon>
+                        <ion-icon name="trash" color="danger" slot="end" (click)="removeGroup(UserContactItem,i)"></ion-icon>
+                    </ion-item>
+                    <ion-item-options color="tertiary" expandable>
+                        <!-- <button ion-button icon-only (click)="editTemplate(templateList)" light>
+                                            <ion-icon name="paper"></ion-icon>
+                                        </button>
+                        <button ion-button icon-only (click)="deleteTemplate(templateList)" danger>
+                                            <ion-icon name="trash"></ion-icon>
+                                        </button> -->
+                        <ion-item-option color="primary" (click)="ShowContactList(UserContactItem)">
+                            <ion-icon slot="start" name="paper"></ion-icon>
+                            Edit
+                        </ion-item-option>
+                        <ion-item-option color="danger" (click)="removeGroup(UserContactItem,i)">
+                            <ion-icon slot="start" name="trash"></ion-icon>
+                            Trash
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+        </ion-col>
+    </ion-row>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+            <ion-fab-button (click)="openCreateContactGroupModel()" color="secondary">
+                <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="primary">
+                <ion-icon name="notifications"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

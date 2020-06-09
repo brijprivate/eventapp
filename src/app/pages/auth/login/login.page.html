@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <!-- <ion-button color="light" (click)="dismissLogin()">Close</ion-button> -->
+        <ion-title>Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding class="background-work">
+    <form #f="ngForm" [formGroup]="loginForm" (ngSubmit)="login(f)" class="example-form">
+        <!-- <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input ngModel type="email" name="email"></ion-input>
+        </ion-item> -->
+
+        <mat-form-field class="example-full-width" style="color: #222">
+            <mat-icon matPrefix style="color:#222;margin-top: 5px">email</mat-icon>
+            <input matInput formControlName="email" style="color:#222" ngModel type="email" placeholder="Email or Mobile No." name="email">
+            <mat-error *ngIf="loginForm.controls['email'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-icon matPrefix style="color:#222">lock
+            </mat-icon>
+            <input matInput formControlName="password" style="color:#222" ngModel type="password" name="password" placeholder="Password">
+        </mat-form-field>
+        <!-- 
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input ngModel type="password" name="password"></ion-input>
+        </ion-item> -->
+
+        <!-- <a href="registerModal()" style="color:white" text-right>Forgot Password?</a> -->
+        <a (click)="forgotModal()" routerLinkActive="active">Forgot Password?</a>
+        <ion-button type="submit" [disabled]="!loginForm.valid" expand="full" color="primary">Login</ion-button>
+    </form>
+    <p text-center style="color: #fff; margin: 1em;">OR</p>
+    <div text-center class="social">
+        <ion-icon ios="logo-facebook" style="fill: #fff;" style="zoom: 4" md="logo-facebook"></ion-icon>
+        <ion-icon ios="logo-googleplus" style="fill: #fff;" style="zoom: 4" md="logo-googleplus"></ion-icon>
+    </div>
+    <p text-center style="color: #fff; margin: 1em;">Don't have a account?</p>
+    <ion-button expand="full" color="danger" (click)="registerModal()">
+        Register
+    </ion-button>
+</ion-content>

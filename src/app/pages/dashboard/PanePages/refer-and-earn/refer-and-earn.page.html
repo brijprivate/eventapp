@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar translucent>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+        </ion-buttons>
+        <ion-title>ReferAndEarn</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card>
+
+        <ion-card-content>
+            <ion-img src="/assets/referdAndEarn.jpeg"></ion-img>
+        </ion-card-content>
+        <!-- <div class="row mr-2 ml-2">
+        <ion-icon size="large"   class="float-left"  ios="ios-tablet-portrait" md="md-tablet-portrait"></ion-icon>
+        <ion-icon  class=" mx-auto d-block"  size="large"  ios="ios-people" md="md-people"></ion-icon> 
+        <ion-icon size="large" class="float-right"  ios="ios-gift" md="md-gift"></ion-icon>
+        </div> -->
+        <ion-card class="ion-card">
+            <ion-card-content>
+                Refered yours friends And Get rewards 10 SMS.
+            </ion-card-content>
+        </ion-card>
+    </ion-card>
+    <!-- <div class="row mr-2 ml-2">
+        <ion-icon size="large"   class="float-left"  ios="ios-tablet-portrait" md="md-tablet-portrait"></ion-icon>
+        <ion-icon  class=" mx-auto d-block"  size="large"  ios="ios-people" md="md-people"></ion-icon> 
+        <ion-icon size="large" class="float-right"  ios="ios-gift" md="md-gift"></ion-icon>
+        </div> -->
+    <ion-card>
+
+        <ion-card-content>
+            <h3 style="align-content:center;"> Your Code : {{userReferanceCode}}</h3>
+        </ion-card-content>
+    </ion-card>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-only color="primary" (click)="shareVai()" clear>
+                <ion-icon class="btn-floating btn-lg btn-sh" name="share"></ion-icon>
+              </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

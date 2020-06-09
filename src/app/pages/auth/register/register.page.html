@@ -1,0 +1,121 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+            <!-- <ion-icon name="backspace" style="zoom:1.5;" ></ion-icon> -->
+            <!-- <ion-button color="light" (click)="dismissLogin()">Close</ion-button> -->
+            <!-- <ion-back-button (click)="BackButtonClick()" defaultHref=""></ion-back-button> -->
+        </ion-buttons>
+        <!-- <ion-button color="light" (click)="dismissRegister()">Close</ion-button> -->
+        <ion-title>Register</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding class="background-work">
+    <form [formGroup]="registerForm" class="form-group example-form" (ngSubmit)="register()">
+
+        <!-- <mat-form-field class="example-full-width">
+      <input matInput placeholder="Favorite food" name="email" value="">
+    </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" formControlName="FirstName" (keypress)="alphabetsOnly($event)" placeholder="First Name" name="fName">
+            <mat-error *ngIf="registerForm.controls['FirstName'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="registerForm.controls['FirstName'].errors?.pattern"> only alphabet.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput formControlName="LastName" placeholder="Last Name" (keypress)="alphabetsOnly($event)" name="lName">
+            <mat-error *ngIf="registerForm.controls['LastName'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="email" formControlName="EmailID" placeholder="Email" name="email">
+            <mat-error *ngIf="registerForm.controls['EmailID'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="registerForm.controls['EmailID'].errors?.email"> Please enter a valid email address.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="password" formControlName="Password" placeholder="Password" name="Password">
+            <mat-error *ngIf="registerForm.controls['Password'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="registerForm.controls['Password'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" formControlName="PhoneNo" placeholder="Phone No" name="phoneNo" disabled=true>
+            <!-- <mat-error *ngIf="registerForm.controls['PhoneNo'].errors?.pattern">Maximun 10 charactors needed.</mat-error> maxlength="10"  pattern="[0-9]*"-->
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput formControlName="DateOfBirth" [matDatepicker]="picker" placeholder="Date of Birth" name="dob">
+            <mat-error *ngIf="registerForm.controls['DateOfBirth'].errors?.required">This field is mandatory.</mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- <mat-radio-group formControlName="Gender" aria-label="Select an option">
+            <label>Gender: </label>
+            <mat-radio-button value="1" checked>Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group> -->
+        <br />
+        <!-- <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Address" name="address" formControlName="Address">
+            <mat-error *ngIf="registerForm.controls['Address'].errors?.required">This field is mandatory.</mat-error>
+           <mat-error *ngIf="registerForm.controls['Address'].errors?.pattern">Maximun 100 charactors needed.</mat-error> 
+        </textarea>
+        </mat-form-field>   -->
+
+        <!-- <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Address" formControlName="Address">
+        </textarea>
+            <mat-error *ngIf="registerForm.controls['Address'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="registerForm.controls['Address'].errors?.pattern">Maximun 100 charactors needed.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an Country</mat-label>
+            <mat-select (selectionChange)="countrySelectionChanged($event)" placeholder="Select Country" formControlName="Country">
+                <mat-option *ngFor="let Country of CountrySelection" [value]="Country.ID">
+                    {{Country.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['Country'].errors?.required">Please select country.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an State</mat-label>
+            <mat-select (selectionChange)="StateSelectionChanged($event)" placeholder="Select State" formControlName="State">
+                <mat-option *ngFor="let State of StateSelection" [value]="State.ID">
+                    {{State.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['State'].errors?.required">Please select state.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an City</mat-label>
+            <mat-select placeholder="Select Country" formControlName="City">
+                <mat-option *ngFor="let City of CitySelection" [value]="City.ID">
+                    {{City.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['City'].errors?.required">Please select city.</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="UserRefreance Code" name="userRefreanceCode">
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+      <input matInput placeholder="ReferedByUser" name="email" value="">
+    </mat-form-field> -->
+
+        <!-- <mat-form-field class="example-full-width">
+      <input matInput placeholder="Balance massege" name="email" value="">
+    </mat-form-field> -->
+
+        <ion-button type="submit" expand="full" color="danger">Register</ion-button>
+    </form>
+    <!-- <p text-center>Already have a account?</p>
+  <ion-button expand="full" color="primary" (click)="loginModal()">Login</ion-button> -->
+</ion-content>

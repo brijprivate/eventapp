@@ -1,0 +1,145 @@
+<ion-header>
+    <ion-toolbar translucent>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+            <!-- <ion-icon name="backspace" style="zoom:1.5;" ></ion-icon> -->
+            <!-- <ion-button color="light" (click)="dismissLogin()">Close</ion-button> -->
+            <!-- <ion-back-button (click)="BackButtonClick()" defaultHref=""></ion-back-button> -->
+        </ion-buttons>
+        <ion-title>Create Event</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+
+    <form #form="ngForm" [formGroup]="eventForm" method="post" (ngSubmit)="CreateEvent()">
+
+        <mat-form-field>
+            <mat-label>Select an Memebr</mat-label>
+            <mat-select (selectionChange)="MemberSelectionChanged($event)" placeholder="Select Memebr" formControlName="MemberUserID">
+                <mat-option *ngFor="let item of SelectionMemberBoxList" [value]="item.MemberUserID">
+                    {{item.FirstName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="First Name" (keypress)="alphabetsOnly($event)" [(ngModel)]="Fname" [ngModelOptions]="{standalone: true}" disabled>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last Name" (keypress)="alphabetsOnly($event)" [(ngModel)]="Lname" [ngModelOptions]="{standalone: true}" disabled>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email Id" (keypress)="alphabetsOnly($event)" [(ngModel)]="EMail" [ngModelOptions]="{standalone: true}" disabled>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last Name" (keypress)="alphabetsOnly($event)" formControlName="HonoredUserLastName">
+            <mat-error *ngIf="eventForm.controls['HonoredUserLastName'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="HonoredUserEmailID">
+            <mat-error *ngIf="eventForm.controls['HonoredUserEmailID'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="eventForm.controls['HonoredUserEmailID'].errors?.email"> Please enter a valid email address.
+            </mat-error>
+        </mat-form-field> -->
+
+        <!-- 
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Phone No" type="text" maxlength="10" formControlName="HonoredUserPhoneNo">
+            <mat-error *ngIf="eventForm.controls['HonoredUserPhoneNo'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Event Date" formControlName="DateOfEvent">
+            <mat-error *ngIf="eventForm.controls['DateOfEvent'].errors?.required">This field is mandatory.</mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="picker" placeholder="Event Date" formControlName ="eventDate">
+      <mat-error *ngIf="eventDate.controls['eventDate'].errors?.required">This field is mandatory.</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+
+        <!-- <mat-radio-group formControlName="HonoredUserGenderID" aria-label="Select an option">
+            <label>Gender: </label>
+            <mat-radio-button value="1" checked>Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group> -->
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Event Name" (keypress)="alphabetsOnly($event)" formControlName="EventDescription">
+            <mat-error *ngIf="eventForm.controls['EventDescription'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Event place" formControlName="eventPlace">      
+            </textarea>
+            <mat-error *ngIf="eventForm.controls['eventPlace'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="eventForm.controls['eventPlace'].errors?.pattern">Maximun 100 charactors needed.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an Country</mat-label>
+            <mat-select (selectionChange)="countrySelectionChanged($event)" placeholder="Select Country" formControlName="CountryID">
+                <mat-option *ngFor="let Country of CountrySelection" [value]="Country.ID">
+                    {{Country.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="eventForm.controls['CountryID'].errors?.required">Please select country.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an State</mat-label>
+            <mat-select (selectionChange)="StateSelectionChanged($event)" placeholder="Select State" formControlName="StateID">
+                <mat-option *ngFor="let State of StateSelection" [value]="State.ID">
+                    {{State.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="eventForm.controls['StateID'].errors?.required">Please select state.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an City</mat-label>
+            <mat-select placeholder="Select Country" formControlName="CityID">
+                <mat-option *ngFor="let City of CitySelection" [value]="City.ID">
+                    {{City.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="eventForm.controls['CityID'].errors?.required">Please select city.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Select Template" formControlName="TemplateID">
+                <mat-option *ngFor="let templateItem of UserTemplatesList" [value]="templateItem.ID">
+                    {{templateItem.Description}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Select Contact Group" formControlName="ContactGroupId">
+                <mat-option *ngFor="let contactItem of UserContactsList" [value]="contactItem.GroupId">
+                    {{contactItem.GroupName}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="eventForm.controls['ContactGroupId'].errors?.required">Please select contact group.</mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+            <input matInput placeholder="Family Member Name" formControlName="AddFamily">
+        </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Notes/Tips"></textarea>
+        </mat-form-field>
+        <ion-button type="submit" expand="full" color="primary">Submit</ion-button>
+        <ion-button type="submit" expand="full" color="secondary">Re-Send Invitation</ion-button>
+    </form>
+</ion-content>

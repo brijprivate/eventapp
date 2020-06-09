@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "788753100531",
+    "firebase_url": "https://cdays-14300.firebaseio.com",
+    "project_id": "cdays-14300",
+    "storage_bucket": "cdays-14300.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788753100531:android:0d4ee2701d911251ffd186",
+        "android_client_info": {
+          "package_name": "cdays.in"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788753100531-l909umk5trjli5mk80t5a7if81oibfpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQXbt2qTfN6UBh_K0kRnJjmP2lds2bRec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788753100531-l909umk5trjli5mk80t5a7if81oibfpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

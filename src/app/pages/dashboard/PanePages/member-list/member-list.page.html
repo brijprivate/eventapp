@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar translucent>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+        </ion-buttons>
+        <ion-title>Member List</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form #form="ngForm" [formGroup]="memberListForm" method="post" (ngSubmit)="saveMemberData()">
+        <h5>Member select</h5>
+        <mat-form-field>
+            <mat-label>Select Member</mat-label>
+            <mat-select (selectionChange)="MemberSelectionChanged($event)" placeholder="Select Member">
+                <mat-option *ngFor="let item of SelectionMemberBoxList" [value]="item.MemberUserID">
+                    {{item.FirstName}}
+                </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="eventForm.controls['CityID'].errors?.required">Please select city.</mat-error> -->
+        </mat-form-field>
+
+        <ion-item-divider>
+            <!-- <mat-form-field class="example-full-width">
+                <mat-label>Member List</mat-label>
+                <select matNativeControl required>
+        <option value="volvo">vijay</option>
+        <option value="saab">karan</option>
+        <option value="mercedes">ramdas</option>
+        <option value="audi">sopan</option>
+      </select>
+            </mat-form-field> -->
+            <br>
+        </ion-item-divider>
+        <h5>Add Member Details</h5>
+        <mat-form-field class="example-full-width" (ngSubmit)="saveMemberData()">
+            <input matInput placeholder="First Name" formControlName="FirstName">
+            <mat-error *ngIf="memberListForm.controls['FirstName'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last Name" formControlName="LastName">
+            <mat-error *ngIf="memberListForm.controls['LastName'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="EmailID">
+            <mat-error *ngIf="memberListForm.controls['EmailID'].errors?.email"> Please enter a valid email address.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Relation" formControlName="Relation">
+            <mat-error *ngIf="memberListForm.controls['Relation'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-radio-group formControlName="GenderId">
+            <label>Gender: </label>
+            <mat-radio-button value="1" checked>Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <mat-checkbox [(ngModel)]="isSaveNewChecked" [ngModelOptions]="{standalone: true}">Add this details as new memebr</mat-checkbox>
+        <br>
+        <ion-button type="submit" expand="full" color="primary">Save Member</ion-button>
+    </form>
+</ion-content>

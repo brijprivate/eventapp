@@ -1,0 +1,145 @@
+<ion-header>
+    <ion-toolbar translucent>
+        <ion-buttons slot="start" (click)="BackButtonClick()">
+            <ion-icon name="arrow-round-back" style="zoom:1.5;"></ion-icon>
+        </ion-buttons>
+        <ion-title>MyProfile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <form #form="ngForm" [formGroup]="profileForm" method="post" (ngSubmit)="SaveProfileData()">
+
+        <ion-icon slot="end" style="zoom:7;" class="rounded mx-auto d-block" ios="ios-contact" md="md-contact">
+        </ion-icon>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="First Name" formControlName="FirstName" (keypress)="alphabetsOnly($event)">
+            <mat-error *ngIf="profileForm.controls['FirstName'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last Name" formControlName="LastName" (keypress)="alphabetsOnly($event)">
+            <mat-error *ngIf="profileForm.controls['LastName'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="EmailID" disabled="true">
+            <mat-error *ngIf="profileForm.controls['EmailID'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="profileForm.controls['EmailID'].errors?.email"> Please enter a valid email address.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput [disabled]="true" placeholder="phone No" formControlName="PhoneNo" pattern="[0-9]*" maxlength="10" (keypress)="numbersOnly($event)">
+            <mat-error *ngIf="profileForm.controls['PhoneNo'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput formControlName="DateOfBirth" [matDatepicker]="picker" placeholder="Date of Birth" name="dob">
+            <mat-error *ngIf="profileForm.controls['DateOfBirth'].errors?.required">This field is mandatory.</mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-radio-group formControlName="Gender" aria-label="Select an option">
+            <label>Gender: </label>
+            <mat-radio-button value="1" checked>Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field>
+            <input matInput formControlName="MarriageDate" [matDatepicker]="myDatepicker" placeholder="Marriage Date">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Address" formControlName="Address"></textarea>
+            <mat-error *ngIf="profileForm.controls['Address'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select an Country</mat-label>
+            <mat-select (selectionChange)="countrySelectionChanged($event)" placeholder="Select Country" formControlName="Country">
+                <mat-option *ngFor="let Country of CountrySelection" [value]="Country.ID">
+                    {{Country.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="profileForm.controls['Country'].errors?.required">Please select country.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an State</mat-label>
+            <mat-select (selectionChange)="StateSelectionChanged($event)" placeholder="Select State" formControlName="State">
+                <mat-option *ngFor="let State of StateSelection" [value]="State.ID">
+                    {{State.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="profileForm.controls['State'].errors?.required">Please select state.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Select an City</mat-label>
+            <mat-select placeholder="Select City" formControlName="City">
+                <mat-option *ngFor="let City of CitySelection" [value]="City.ID">
+                    {{City.Description}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="profileForm.controls['City'].errors?.required">Please select city.</mat-error>
+        </mat-form-field>
+
+
+        <!-- get   -->
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="User Referance Code" formControlName="UserReferanceCode">
+            <mat-error *ngIf="profileForm.controls['UserReferanceCode'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Refered By Referance Code" formControlName="ReferedByReferanceCode">
+            <mat-error *ngIf="profileForm.controls['ReferedByReferanceCode'].errors?.required">This field is mandatory.</mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="BalanceMessages" formControlName="BalanceMessages">
+            <mat-error *ngIf="profileForm.controls['BalanceMessages'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="UPID" oninput="this.value = this.value.toUpperCase()" formControlName="UpiId">
+            <mat-error *ngIf="profileForm.controls['UpiId'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Account No." oninput="this.value = this.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim()" formControlName="AccountNo">
+            <mat-error *ngIf="profileForm.controls['AccountNo'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Confirm Account No." oninput="this.value = this.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim()" formControlName="ConfirmAccountNo">
+            <mat-error *ngIf="profileForm.controls['ConfirmAccountNo'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="profileForm.controls['ConfirmAccountNo'].errors?.mustMatch">Passwords must match.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="IFSCCode" formControlName="IFSCCode">
+            <mat-error *ngIf="profileForm.controls['IFSCCode'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="MemberShip Type" formControlName="MemberShipType">
+            <mat-error *ngIf="profileForm.controls['MemberShipType'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Membership Expiry" formControlName="MembershipExpiry">
+            <mat-error *ngIf="profileForm.controls['MembershipExpiry'].errors?.required">This field is mandatory.</mat-error>
+        </mat-form-field>
+
+        <ion-button type="submit" expand="full" color="primary">Save Detail</ion-button>
+    </form>
+</ion-content>

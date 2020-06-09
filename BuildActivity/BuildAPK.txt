@@ -1,0 +1,10 @@
+ionic cordova build android --release
+
+keytool -genkey -v -keystore cadysKeystore.keystore -alias Cdays -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mykeystore.keystore Cdays.apk Cdays
+
+
+adb devices
+
+scrcpy -s 35dbd8c10204
