@@ -70,5 +70,26 @@
 }
 
 ion-toolbar {
-    --background: linear-gradient(162deg, #B4D9F3 10%, #77BAEA 100%);
+    --background: #2a1a6b;
+}
+ion-toolbar {
+    --background: #2a1a6b;
+    color: #fff;
+}
+ion-tab-bar {
+    --background: #2d296b;
+}
+ion-tab-button{
+    color: #fff;
+}
+
+ion-tab-button.tab-selected{
+    color: #f900fb;
+}
+mat-icon{
+    margin-right: 10px;
+}
+
+.form-control:focus{
+    box-shadow: none !important;
 }
