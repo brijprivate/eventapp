@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardPage } from './dashboard.page';
+import { ContactpickerPage } from './contactpicker/contactpicker.page';
 
 const routes: Routes = [
     {
@@ -16,6 +17,16 @@ const routes: Routes = [
                     }
                 ]
             },
+            {
+                path: 'picker',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: './contactpicker/contactpicker.module#ContactpickerPageModule'
+                    }
+                ]
+            },
+
             {
                 path: 'tab2',
                 children: [

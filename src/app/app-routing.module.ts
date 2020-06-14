@@ -29,6 +29,8 @@ const routes: Routes = [
   { path: 'forgot-otp', loadChildren: './pages/auth/forgot-otp/forgot-otp.module#ForgotOTPPageModule' },
   { path: 'change-password', loadChildren: './pages/auth/change-password/change-password.module#ChangePasswordPageModule' },
   { path: 'member-list', loadChildren: './pages/dashboard/PanePages/member-list/member-list.module#MemberListPageModule' },
+  { path: 'contactpicker', loadChildren: './pages/dashboard/contactpicker/contactpicker.module#ContactpickerPageModule' },
+
 
 
   // { path: 'home', loadChildren: './home/home.module#HomePageModule', canActivate: [AuthGuard] },
