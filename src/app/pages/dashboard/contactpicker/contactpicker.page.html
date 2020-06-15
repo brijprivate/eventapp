@@ -3,7 +3,8 @@
 
 </ion-header> -->
 <ion-toolbar>
-  <ion-searchbar></ion-searchbar>
+  <!-- <ion-searchbar [(ngModel)]="search_string" showCancelButton="focus" animated   (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">></ion-searchbar> -->
 </ion-toolbar>
 
 <ion-content>
@@ -11,12 +12,12 @@
 
 
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let contact of contactList">
       <ion-label>
-      <h2>Brij</h2>
-      <p>+91 7992324810</p>
+      <h2>{{contact.name}}</h2>
+      <p>{{contact.number}}</p>
       </ion-label>
-      <ion-checkbox slot="end" value="pepperoni" ></ion-checkbox>
+      <ion-checkbox slot="end"  checked={{contact.select}} (tap)="choosecontact(contact)" ></ion-checkbox>
     </ion-item>
   
     
